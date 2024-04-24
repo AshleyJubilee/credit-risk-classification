@@ -1,27 +1,39 @@
-# Module 12 Report Template
-
 ## Overview of the Analysis
 
-In this section, describe the analysis you completed for the machine learning models used in this Challenge. This might include:
+I used attributes about previous loans and their borrowers to predict a binary risk classification of future loans using loan and borrower data. 
 
-* Explain the purpose of the analysis.
-* Explain what financial information the data was on, and what you needed to predict.
-* Provide basic information about the variables you were trying to predict (e.g., `value_counts`).
-* Describe the stages of the machine learning process you went through as part of this analysis.
-* Briefly touch on any methods you used (e.g., `LogisticRegression`, or any other algorithms).
+The dataset used previous loan data and was based on the size and interest rate of the loan, as well as different financial attributes about the borrower such as income, debt, number of accounts, and previous derogatory marks. These were paired with a binary classification of 'Healthy' and 'Risky' for each loan.
+
+I split the data between a training and testing dataset, and fit a logistic regression model to the training dataset, using the remaining testing dataset for predictions to evaluate the model. 
+
+I evaluated the model with a confusion matrix to idenitfy the ammount and type of correct and incorrect classifications.
+
+
 
 ## Results
-
-Using bulleted lists, describe the accuracy scores and the precision and recall scores of all machine learning models.
 
 * Machine Learning Model 1:
     * Description of Model 1 Accuracy, Precision, and Recall scores.
 
+    - Accuracy: Total Correct Classificaiton %
+        - 0.99
+
+    - Precision: Predicted Label Correct Classificaiton %
+        - Healthy: 1.00
+        - Risky: 0.85
+        - Macro Avg: 0.92
+        - Weighted Avg: 0.99
+
+    - Recall: % of Total Label Correctly Predicted
+        - Healthy: 0.99
+        - Risky: 0.95
+        - Macro Avg: 0.97
+        - Weighted Avg: 0.99
+
 ## Summary
 
-Summarize the results of the machine learning models, and include a recommendation on the model to use, if any. For example:
+This model is proficient in predicting healthy loans. It is unlikely to flag healthy loans as risky. It is also adequete at identifying most risky loans, correctly flagging 95% of all risky loans.
 
-* Which one seems to perform best? How do you know it performs best?
-* Does performance depend on the problem we are trying to solve? (For example, is it more important to predict the `1`'s, or predict the `0`'s? )
+The model struggles with false positives, with 15% of all risky flags being healthy loans. While 99% of the time, the model send a correct classification, this is mostly due to the low ammount of risky loans compared to healthy loans.
 
-If you do not recommend any of the models, please justify your reasoning.
+The model has it's uses as a first pass, due to it's simplicity and adequate false negative rate, but I would not reccomend it's use to take action due to it's high false positive rate. Since this is also a model predicting financial information, something with high importance, I cannot reccomend this model for this field. Incorrect classifications have a much higher risk in this field compared to others, so a better model is absolutely required. 
